@@ -102,6 +102,15 @@ class custom_report_exporter extends persistent_exporter {
             ],
             'editmode' => ['type' => PARAM_INT],
             'javascript' => ['type' => PARAM_RAW],
+            'actionbuttons' => [
+                'type' => [
+                    'id' => ['type' => PARAM_TEXT],
+                    'value' => ['type' => PARAM_TEXT],
+                    'module' => ['type' => PARAM_TEXT]
+                ],
+                'multiple' => true,
+                'optional' => true
+            ],
         ];
     }
 
@@ -164,6 +173,7 @@ class custom_report_exporter extends persistent_exporter {
             'filtersform' => $filtersform,
             'editmode' => (int)$this->editmode,
             'javascript' => '',
+            'actionbuttons' => isset($datasource) ? $datasource->get_action_buttons() : [],
         ];
     }
 
