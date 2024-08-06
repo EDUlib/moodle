@@ -71,6 +71,19 @@ abstract class system_report extends base {
     }
 
     /**
+     * Provide default implementation of the report name. Extending classes can implement this method to provide their own name
+     *
+     * @return string
+     */
+    public static function get_name(): string {
+        $classparts = explode('\\', get_called_class());
+        $classname = end($classparts);
+
+        // Try to make human readable, capitalized and with spaces.
+        return ucfirst(str_replace('_', ' ', $classname));
+    }
+
+    /**
      * Validates access to view this report
      *
      * This is necessary to implement independently of the page that would typically embed the report because
@@ -303,6 +316,16 @@ abstract class system_report extends base {
      */
     final public function can_be_downloaded(): bool {
         return $this->can_view() && $this->is_downloadable();
+    }
+
+    /**
+     * Return list of column names that will be excluded when table is downloaded. Extending classes should override this method
+     * as appropriate
+     *
+     * @return string[] Array of column unique identifiers
+     */
+    public function get_exclude_columns_for_download(): array {
+        return [];
     }
 
     /**
