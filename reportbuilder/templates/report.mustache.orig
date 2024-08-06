@@ -25,17 +25,21 @@
         "contextid": 1,
         "type": 1,
         "parameters": [],
+        "attributes": [{
+            "name": "data-custom",
+            "value": "1"
+        }],
         "table": "table",
         "filterspresent": true,
-        "filtersform": "form",
-        "actionbuttons": []
+        "filtersform": "form"
     }
 }}
-<div class="reportbuilder-report"
+<div class="reportbuilder-report {{classes}}"
         data-region="core_reportbuilder/report"
         data-report-id="{{id}}"
         data-report-type="{{type}}"
-        data-parameter="{{parameters}}">
+        data-parameter="{{parameters}}"
+        {{#attributes}}{{name}}="{{value}}" {{/attributes}}>
             <div class="reportbuilder-wrapper">
                 {{#filterspresent}}
                     <div class="dropdown d-flex justify-content-end">
@@ -45,21 +49,12 @@
                 {{! Table }}
                 <div class="mt-2">
                     {{{table}}}
-                    {{! Create action buttons }}
-                    {{#actionbuttons}}
-                        <input
-                                type="submit"
-                                id="action-button-{{id}}"
-                                class="btn btn-secondary"
-                                data-module="{{module}}"
-                                value="{{value}}">
-                    {{/actionbuttons}}
                 </div>
             </div>
 </div>
+
 {{#js}}
-    require(['core_reportbuilder/report', 'core_reportbuilder/action_buttons'], function(report, action_buttons) {
+    require(['core_reportbuilder/report'], function(report) {
         report.init();
-        action_buttons.init();
     });
 {{/js}}
