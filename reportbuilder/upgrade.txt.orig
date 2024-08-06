@@ -1,19 +1,15 @@
 This file describes API changes in /reportbuilder/*
 Information provided here is intended especially for developers.
 
-=== 4.4 ===
+=== 4.3.5 ===
 
-* New methods `get_identity_[columns|filters]` in user entity, for retrieving all user identity field report elements
-* The database helper `generate_alias[es]` and `generate_param_name[s]` methods now accept an optional `$suffix` argument for
-  appending additional string to the generated value
-* New report filter types:
-  - `filesize` for reports containing filesize data
-* `set_is_downloadable` and `get_is_downloadable` methods have been added to \local\report\column class, used to
-   remove columns from report download.
-* Moved `get_exclude_columns_for_download` method from system report to \local\report\base class, updated to
-   use `get_is_downloadable` method from \local\report\column class.
-* Moved `manager::write_close` from  tablelib construct(&$table, $dataformat)
-  to start_table($sheettitle) to delay the checking of $SESSION mutation so columns can be excluded for download.
+* New database helper method `sql_replace_parameters` to help ensure uniqueness of parameters within a SQL expression
+
+=== 4.3.4 ===
+
+* The `get_name` method has been moved to the base report class and can now be implemented for both custom and system reports, it
+  will be used as the caption when rendering tables (which can also be targeted in Behat scenarios)
+* The default value for the filename when calling `set_downloadable` is now taken from calling `get_name` on the current report
 
 === 4.3 ===
 
