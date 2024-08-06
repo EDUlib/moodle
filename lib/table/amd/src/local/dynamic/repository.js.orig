@@ -16,7 +16,7 @@
 /**
  * A javascript module to handle calendar ajax actions.
  *
- * @module     core_calendar/repository
+ * @module     core_table/local/dynamic/repository
  * @copyright  2017 Simey Lameze <lameze@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -38,7 +38,6 @@ import {call as fetchMany} from 'core/ajax';
  * @param {String} options.pageNumber The page number
  * @param {Number} options.pageSize The page size
  * @param {Object} options.hiddenColumns The columns to hide
- * @param {Number} options.contextid The contextid of the page.
  * @param {Bool} resetPreferences
  * @return {Promise} Resolved with requested table view
  */
@@ -50,8 +49,7 @@ export const fetch = (component, handler, uniqueid, {
     lastinitial = null,
     pageNumber = null,
     pageSize = null,
-    hiddenColumns = {},
-    contextid = null
+    hiddenColumns = {}
 } = {}, resetPreferences = false) => fetchMany([{
     methodname: `core_table_get_dynamic_table_content`,
     args: {
@@ -66,7 +64,6 @@ export const fetch = (component, handler, uniqueid, {
         pagenumber: pageNumber,
         pagesize: pageSize,
         hiddencolumns: hiddenColumns,
-        resetpreferences: resetPreferences,
-        contextid: contextid
+        resetpreferences: resetPreferences
     },
 }])[0];
