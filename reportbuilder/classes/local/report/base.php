@@ -84,6 +84,9 @@ abstract class base {
     /** @var string $downloadfilename Name of the downloaded file */
     private $downloadfilename = '';
 
+    /** @var array $actionbuttons */
+    private $actionbuttons = [];
+
     /** @var int Default paging size */
     private $defaultperpage = self::DEFAULT_PAGESIZE;
 
@@ -755,6 +758,24 @@ abstract class base {
      */
     final public function get_downloadfilename(): string {
         return $this->downloadfilename;
+    }
+
+    /**
+     * Add an action button to the report.
+     *
+     * @param $button array
+     */
+    final public function add_action_button(array $button) {
+        $this->actionbuttons[] = $button;
+    }
+
+    /**
+     * Return the array of action buttons.
+     *
+     * @return array
+     */
+    final public function get_action_buttons(): array {
+        return $this->actionbuttons;
     }
 
     /**
