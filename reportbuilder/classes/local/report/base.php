@@ -758,6 +758,22 @@ abstract class base {
     }
 
     /**
+     * Return list of column names that will be excluded when table is downloaded. Extending classes should override this method
+     * as appropriate
+     *
+     * @return string[] Array of column unique identifiers
+     */
+    public function get_exclude_columns_for_download(): array {
+        $excludedcolumns = [];
+        foreach ($this->columns as $column) {
+            if (!$column->get_is_downloadable()) {
+                $excludedcolumns[] = $column->get_unique_identifier();
+            }
+        }
+        return $excludedcolumns;
+    }
+
+    /**
      * Default 'per page' size
      *
      * @return int
