@@ -93,8 +93,7 @@ class custom_report_exporter extends persistent_exporter {
             'filtersapplied' => ['type' => PARAM_INT],
             'filterspresent' => ['type' => PARAM_BOOL],
             'filtersform' => ['type' => PARAM_RAW],
-            // 'editmode' => ['type' => PARAM_BOOL],
-            'editmode' => ['type' => PARAM_INT],
+            'editmode' => ['type' => PARAM_BOOL],
             'sidebarmenucards' => [
                 'type' => custom_report_column_cards_exporter::read_properties_definition(),
                 'optional' => true,
@@ -116,15 +115,6 @@ class custom_report_exporter extends persistent_exporter {
                 'optional' => true,
             ],
             'javascript' => ['type' => PARAM_RAW],
-            'actionbuttons' => [
-                'type' => [
-                    'id' => ['type' => PARAM_TEXT],
-                    'value' => ['type' => PARAM_TEXT],
-                    'module' => ['type' => PARAM_TEXT]
-                ],
-                'multiple' => true,
-                'optional' => true
-            ],
         ];
     }
 
@@ -183,10 +173,8 @@ class custom_report_exporter extends persistent_exporter {
             'filtersapplied' => $report->get_applied_filter_count(),
             'filterspresent' => $filterspresent,
             'filtersform' => $filtersform,
-            // 'editmode' => $this->editmode,
-	    'editmode' => (int)$this->editmode,
+            'editmode' => $this->editmode,
             'javascript' => '',
-	    'actionbuttons' => isset($datasource) ? $datasource->get_action_buttons() : [],
         ] + $editordata;
     }
 

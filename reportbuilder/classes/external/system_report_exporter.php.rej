@@ -1,0 +1,18 @@
+--- reportbuilder/classes/external/system_report_exporter.php
++++ reportbuilder/classes/external/system_report_exporter.php
+@@ -73,6 +73,15 @@ protected static function define_other_properties(): array {
+                 'type' => PARAM_RAW,
+                 'optional' => true,
+             ],
++            'actionbuttons' => [
++                'type' => [
++                    'id' => ['type' => PARAM_TEXT],
++                    'value' => ['type' => PARAM_TEXT],
++                    'module' => ['type' => PARAM_TEXT]
++                ],
++                'multiple' => true,
++                'optional' => true
++            ],
+         ];
+     }
+ 
