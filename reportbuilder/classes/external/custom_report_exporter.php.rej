@@ -1,0 +1,10 @@
+--- reportbuilder/classes/external/custom_report_exporter.php
++++ reportbuilder/classes/external/custom_report_exporter.php
+@@ -173,6 +182,7 @@ protected function get_other_values(renderer_base $output): array {
+             'filtersform' => $filtersform,
+             'editmode' => (int)$this->editmode,
+             'javascript' => '',
++            'actionbuttons' => isset($datasource) ? $datasource->get_action_buttons() : [],
+         ];
+     }
+ 
