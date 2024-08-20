@@ -1,0 +1,26 @@
+--- reportbuilder/classes/external/system_report_exporter.php
++++ reportbuilder/classes/external/system_report_exporter.php
+@@ -73,6 +73,15 @@ protected static function define_other_properties(): array {
+                 'type' => PARAM_RAW,
+                 'optional' => true,
+             ],
++            'actionbuttons' => [
++                'type' => [
++                    'id' => ['type' => PARAM_TEXT],
++                    'value' => ['type' => PARAM_TEXT],
++                    'module' => ['type' => PARAM_TEXT]
++                ],
++                'multiple' => true,
++                'optional' => true
++            ],
+         ];
+     }
+ 
+@@ -118,6 +127,7 @@ protected function get_other_values(renderer_base $output): array {
+             'filterspresent' => $filterspresent,
+             'filtersapplied' => $source->get_applied_filter_count(),
+             'filtersform' => $filterspresent ? $filtersform->render() : '',
++            'actionbuttons' => $source->get_action_buttons(),
+         ];
+     }
+ }
